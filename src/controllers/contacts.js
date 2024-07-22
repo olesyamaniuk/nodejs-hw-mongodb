@@ -48,6 +48,7 @@ export const getContactsByIdController = async (req, res) => {
     data: contact,
   });
 };
+
 //POST
 export const createContactController = async (req, res) => {
   const contactData = {
@@ -77,13 +78,18 @@ export const updateContactController = async (req, res) => {
     data,
   });
 };
+
 //DELETE
 export const deleteContactController = async (req, res) => {
   const { id } = req.params;
   const userId = req.user._id;
-  const result = await deleteContact({ id, userId });
+  const result = await deleteContact(id, userId );
   if (!result) {
     throw createHttpError(404, `Contact with id=${id} not found`);
   }
-  res.status(204).send();
+  // res.status(204).send();
+  res.status(204).json({
+
+    message: 'Successfully deleted!'
+  });
 };
