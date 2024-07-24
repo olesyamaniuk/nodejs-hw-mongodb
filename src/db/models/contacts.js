@@ -23,12 +23,12 @@ const contactShema = new Schema(
     contactType: {
       type: String,
       enum: typeList,
+
       default: 'personal',
     },
-    userId: {
-      type: String,
-      required: true,
-      ref: 'users' },
+
+    userId: { type: String, required: true, ref: 'users' },
+    photo: { type: String },
   },
   {
     timestamps: true,
@@ -40,3 +40,4 @@ contactShema.pre('findOneAndUpdate', setUpdateSettings);
 contactShema.post('findOneAndUpdate', mongooseSaveError);
 
 export const ContactCollection = model('contacts', contactShema);
+

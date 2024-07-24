@@ -9,7 +9,11 @@ const usersSchema = new Schema(
   },
   { timestamps: true, versionKey: false },
 );
-
+usersSchema.methods.toJSON = function () {
+  const obj = this.toObject();
+  delete obj.password;
+  return obj;
+};
 usersSchema.post('save', mongooseSaveError);
 usersSchema.pre('findOneAndUpdate', setUpdateSettings);
 usersSchema.post('findOneAndUpdate', mongooseSaveError);
