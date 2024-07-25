@@ -34,7 +34,8 @@ router.post(
   ctrlWrapper(requestResetEmailController),
 );
 router.post(
-  '/reset-password',
+  // '/reset-password',
+  '/reset-pwd',
   validateBody(resetPasswordSchema),
   ctrlWrapper(resetPasswordContoroller),
 );
