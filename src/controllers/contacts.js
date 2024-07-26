@@ -27,10 +27,13 @@ export const getAllContactsConroller = async (req, res) => {
     filter,
     userId,
   });
+  if (contacts.data.length === 0) {
+    throw createHttpError(404, 'Contacts not found');
+  }
   res.json({
     status: 200,
     message: 'Successfully found contacts ',
-    data: contacts.data.length ? contacts : { data: [] },
+    data: contacts,
   });
 };
 
